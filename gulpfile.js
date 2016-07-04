@@ -22,7 +22,7 @@ gulp.task("webpack dev", function(callback) {
   // run webpack
   webpack(
       // configuration
-      wpConfig({prod: true})
+      wpConfig({dev: true})
       , function(err, stats) {
         if(err) throw new gutil.PluginError("webpack", err);
         gutil.log("[webpack]", stats.toString({
