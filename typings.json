@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "ramda": "registry:npm/ramda#0.21.0+20160531162943"
+  },
+  "globalDevDependencies": {
+    "require": "registry:dt/require#2.1.20+20160316155526"
+  }
+}
