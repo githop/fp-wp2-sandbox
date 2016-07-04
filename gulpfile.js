@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var gutil =  require("gulp-util");
 var wpConfig = require('./webpack.config');
 
-gulp.task("webpack prod", function(callback) {
+gulp.task("webpack-prod", function(callback) {
   // run webpack
   webpack(
     // configuration
@@ -18,7 +18,7 @@ gulp.task("webpack prod", function(callback) {
   });
 });
 
-gulp.task("webpack dev", function(callback) {
+gulp.task("webpack-dev", function(callback) {
   // run webpack
   webpack(
       // configuration

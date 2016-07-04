@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "webpack --env.prod -p"
+    "build:prod": "gulp webpack-prod",
+    "build:dev": "gulp webpack-dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.13.1",
-    "lodash-fp": "^0.10.4",
     "ramda": "^0.21.0"
   },
   "devDependencies": {

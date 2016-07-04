@@ -2,12 +2,13 @@ const {resolve} = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = env => {
   return {
-    entry: resolve(__dirname, 'lib/index.ts'),
+    entry: {
+      app: resolve(__dirname, 'lib/index.ts')
+    },
     output: {
-      filename: 'fp.bundle.js',
+      filename: '[name].bundle.js',
       path: resolve(__dirname, 'dist'),
       pathinfo: true
     },
@@ -36,6 +37,12 @@ module.exports = env => {
         },
         mangle: {
           except: ['$super', '$', 'exports', 'require']
+        }
+      }) : undefined,
+      env.prod ? new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module, count) {
+          return module.resource && module.resource.indexOf(resolve(__dirname, 'lib')) === -1;
         }
       }) : undefined
     ].filter(p => !!p)
