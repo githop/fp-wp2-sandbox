@@ -16,7 +16,7 @@ const toUpperCase = (str) => str.toUpperCase();
 const existy = (x) => (x != null);
 // const truthy = (x) => (x != false && existy(x));
 
-const safeHead = function(xs) {
+const safeHead = function (xs) {
   return Maybe.of(xs[0]);
 };
 
@@ -28,19 +28,20 @@ const ioWindow = new IO(() => window);
 const $ = (selector) => new IO(() => document.querySelectorAll(selector));
 
 export {
-  toUpperCase,
-  existy,
-  safeHead,
-  map,
-  concat,
-  prop,
-  compose,
-  join,
-  reverse,
-  split,
-  match,
-  add,
-  ioWindow,
-  head,
-  $
+    toUpperCase,
+    existy,
+    safeHead,
+    fmaybe,
+    map,
+    concat,
+    prop,
+    compose,
+    join,
+    reverse,
+    split,
+    match,
+    add,
+    ioWindow,
+    head,
+    $
 }

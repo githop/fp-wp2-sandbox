@@ -9,8 +9,8 @@ module.exports = env => {
     },
     output: {
       filename: '[name].bundle.js',
-      path: resolve(__dirname, 'dist'),
-      pathinfo: true
+      path: resolve(__dirname, 'dist')
+      // pathinfo: true
     },
     resolve: {
       extensions: ['', '.ts', '.js']
@@ -19,7 +19,7 @@ module.exports = env => {
     devtool: env.prod ? 'source-map' : 'eval',
     module: {
       loaders: [
-        {test: /.ts$/, loader: 'ts-loader'}
+        {test: /.ts$/, loader: 'ts-loader', exclude: /node_modules/}
       ]
     },
     plugins: [
@@ -29,21 +29,21 @@ module.exports = env => {
         hash: false
       }),
       env.prod ? new webpack.optimize.OccurrenceOrderPlugin() : undefined,
-      env.prod ? new webpack.optimize.DedupePlugin() : undefined,
       env.prod ? new webpack.optimize.UglifyJsPlugin({
         compress: {
           drop_console: false,
-          warnings: true
+          warnings: true,
+          dead_code: true,
+          unused: true
         },
         mangle: {
           except: ['$super', '$', 'exports', 'require']
-        }
+        },
+        sourceMap: true
       }) : undefined,
       env.prod ? new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        minChunks: function (module, count) {
-          return module.resource && module.resource.indexOf(resolve(__dirname, 'lib')) === -1;
-        }
+        minChunks: module => /node_modules/.test(module.resource)
       }) : undefined
     ].filter(p => !!p)
   };
